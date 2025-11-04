@@ -46,7 +46,7 @@ public class CustomerController implements Initializable {
     private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableView<?> tblCustomerManagement;
+    private TableView<CustomerDTO> tblCustomerManagement;
 
     @FXML
     private TextField txtAddress;
@@ -87,7 +87,15 @@ public class CustomerController implements Initializable {
 
     @FXML
     void btnClearActionOn(ActionEvent event) {
-
+        txtCusID.setText("");
+        txtTitle.setText("");
+        txtName.setText("");
+        txtDOB.setText("");
+        txtSalary.setText("");
+        txtAddress.setText("");
+        txtCity.setText("");
+        txtProvince.setText("");
+        txtPostalCode.setText("");
     }
 
     @FXML
@@ -119,7 +127,7 @@ public class CustomerController implements Initializable {
         customerDTOS.clear();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakade_management_system", "root", "1234");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/thogakademanagement", "root", "1234");
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Customer");
             ResultSet resultSet = preparedStatement.executeQuery();
 
